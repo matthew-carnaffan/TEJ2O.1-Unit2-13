@@ -5,23 +5,25 @@
  * This program counts down from 4
 */
 
-//Variable creation
+// Variable creation and value assign
 let myStrip: neopixel.Strip = null
 myStrip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGB)
-let strip: number
-strip = 4
-let range = myStrip.range(0, 4)
+let strip = 4
 
-//clean up
+// Clean up
 basic.showIcon(IconNames.Happy)
 myStrip.showColor(neopixel.colors(NeoPixelColors.Black))
 myStrip.show()
 
-//timer
-input.onButtonPressed(Button.A, function() {
+// Timer
+input.onButtonPressed(Button.A, function () {
+    strip = 4
+
     while (strip >= 0) {
-        myStrip.showColor(neopixel.colors(NeoPixelColors.Black))
-        let range = myStrip.range(strip, -1)
+
+        let currentRange = myStrip.range(0, strip)
+        currentRange.showColor(neopixel.colors(NeoPixelColors.Red))
+        basic.showNumber(strip)
         myStrip.show()
         basic.pause(1000)
         strip = strip - 1
