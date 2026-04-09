@@ -5,27 +5,34 @@
  * This program counts down from 4
 */
 
-// Variable creation and value assign
-let myStrip: neopixel.Strip = null
-myStrip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGB)
-let strip = 4
+// Variable creation
+let myStrip: neopixel.Strip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGB)
+let stripCount = 4 // This tracks how many LEDs should be ON
 
 // Clean up
 basic.showIcon(IconNames.Happy)
 myStrip.showColor(neopixel.colors(NeoPixelColors.Black))
 myStrip.show()
 
-// Timer
+//Input for timer
 input.onButtonPressed(Button.A, function () {
-    strip = 4
+    stripCount = 4 
 
-    while (strip >= 0) {
-
-        let currentRange = myStrip.range(0, strip)
+    while (stripCount >= 0) {
+        //clear neopixels
+        myStrip.clear() 
+        
+        //timer
+        let currentRange = myStrip.range(0, stripCount)
         currentRange.showColor(neopixel.colors(NeoPixelColors.Red))
-        basic.showNumber(strip)
+        basic.showNumber(stripCount)
         myStrip.show()
         basic.pause(1000)
-        strip = strip - 1
+        stripCount = stripCount - 1 
     }
+
+    //Beep and return to icon
+    music.ringTone(Note.GSharp)
+    basic.showIcon(IconNames.Happy)
+    music.stopAllSounds()
 })
