@@ -6,7 +6,7 @@
 */
 
 // Variable creation
-let myStrip: neopixel.Strip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGB)
+const myStrip: neopixel.Strip = neopixel.create(DigitalPin.P16, 4, NeoPixelMode.RGB)
 let stripCount = 4 // This tracks how many LEDs should be ON
 
 // Clean up
@@ -23,7 +23,7 @@ input.onButtonPressed(Button.A, function () {
         myStrip.clear() 
         
         //timer
-        let currentRange = myStrip.range(0, stripCount)
+        const currentRange = myStrip.range(0, stripCount)
         currentRange.showColor(neopixel.colors(NeoPixelColors.Red))
         basic.showNumber(stripCount)
         myStrip.show()
